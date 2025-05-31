@@ -12,3 +12,6 @@
 
 
 # para dar un incio
+def control_asistencia_trabajador():
+
+
