@@ -21,5 +21,6 @@ def control_asistencia_trabajador():
   if puestos=="3":
       print("El trabajador tiene puesto en enfermería")
   if puestos=="4":
-      print("El trabador tiene puesto en recepcion")
+      print("El trabador tiene puesto en recepcion recepcion")
+    
 control_asistencia_trabajador()
