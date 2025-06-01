@@ -1,5 +1,50 @@
 # main
-def control_asistencia_trabajador():
+import tkinter as tk
+from tkinter import messagebox
+from tkinter import tkk
+class Aplicacion:
+  def __init__(self,root):
+    self.root= root
+    self.root.title("CONTROL ASISTENCIAS HOSPITAL")
+    self.root.geometry("600x700")
+    self.root.config(bg="lightblue")
+
+    self.menu_lateral= tk.Frame(self.root,bg="light salmon",width=10)
+    self.menu_lateral.pack(side="right",expand=True,fill="both")
+    self.crear_menu
+    self.saludo
+
+  
+  def crear_menu(self):
+    tk.Button(self.menu_lateral,text="INICIO",command=self.saludo,widht=18).pack(pady=10)
+    tk.Button(self.menu_lateral, text="REGISTRO",command= self.registro, widht=18).pack(pady=10)
+    tk.Button(self.menu_lateral, text="PUESTOS", command=self.puestos, widht=18).pack(pady=10)
+    tk.Button(self.menu_lateral, text="ASISTENCIAS", command=self.asistecias, widht=18).pack(pady=10)
+    tk.Button(selfmenu_lateral, text="PERIODO VACACIONAL", command=self.periodo, widht=18).pack(pady=10)
+
+  
+  def limpiar_area_dinamica(self):
+     for widget in self.area_dinamica.winfo_childre():
+         widget.destroy()
+       
+  def saludo(self):
+     self.limpiar_area_dinamica()
+     tk.Label(self.area_dinamica, text="Aquí va el mensaje de bienvenida", font("Arial",14)).pack(pady=10)
+     tk.Button(self.area_dinamica, text="Mosatrar mensaje de bienvenida")
+          command=lambda:messagebox.showinfo("Bienvenido", "Hola bienvenida")).pack()
+    
+  def trabajador(self)
+     self.limpiar_area_dinamica()
+     tk.Label(self.area_dinamica, text="Registro de los datos del trabajador", font=("Arial", 12)).pack(pady=10)
+     tk.Label(self.area_dinamica, text="Nombre:").pack()
+     nombre = tk.Entry(self.area_dinamica)
+     nombre.pack(pady=5)
+
+   
+  
+    
+
+  
   print("CONTROL DE AISTENCIAS DE TRABAJADOR")
   print("--Registre los datos del trabajador")
   nombre=input("Inrese el nombre del trabajador \n")
