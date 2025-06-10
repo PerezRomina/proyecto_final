@@ -2,6 +2,32 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter import ttk
 
+class TrabajadorBase:
+    def __init__(self, nombre, edad, numero, genero):
+        self.nombre = nombre
+        self.edad = edad
+        self.numero = numero
+        self.genero = genero
+
+    def mostrar_info(self):
+        return f"{self.nombre} | Edad: {self.edad} | Nº: {self.numero} | Género: {self.genero}"
+
+class Medico(TrabajadorBase):
+    def __init__(self, nombre, edad, numero, genero, especialidad):
+        super().__init__(nombre, edad, numero, genero)
+        self.especialidad = especialidad
+
+    def diagnosticar(self):
+        return f"Carga del diagnostico en Especialidad: {self.especialidad}"
+
+class Recepcionista(TrabajadorBase):
+    def __init__(self, nombre, edad, numero, genero, area):
+        super().__init__(nombre, edad, numero, genero)
+        self.area = area
+
+    def atender_llamadas(self):
+        return f"Atencion de llamadas en el area de : {self.area}"
+
 class Aplicacion:
     def __init__(self, root):
         self.root = root
