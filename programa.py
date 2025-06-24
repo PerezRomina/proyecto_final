@@ -44,7 +44,6 @@ class Aplicacion:
     def saludo(self):
         self.limpiar_area_dinamica()
         tk.Label(self.area_dinamica, text="Bienvenido al sistema de asistencia",bg="#FFE4C4", font=("Courier New", 18)).pack(pady=10)
-        
         tk.Button(self.area_dinamica, text="Bienvenida",
                   command=lambda: messagebox.showinfo("Bienvenido", "Buen día, bienvenido a la página oficial del hospital")).pack()
 
@@ -145,7 +144,6 @@ class Aplicacion:
             "-VESPERTINO: 03:00 pm - 11:00 pm\n"
             "-NOCTURNO: 11:00 pm - 07:00 am\n"
         )
-
         tk.Label(self.area_dinamica, text=texto, font=("Arial", 11), justify="left").pack(padx=20, pady=10)
 
         tk.Label(self.area_dinamica, text="Número de trabajador:").pack()
@@ -176,6 +174,17 @@ class Aplicacion:
                 messagebox.showerror("Error", "Selecciona un horario correspondiente")
                 return
 
+            turno = next((t["turno"] for t in self.turnos if t["numero_trabajador"] == numero), None)
+            turno_horario = {
+                "Matutino": "07:00 am - 03:00 pm",
+                "Vespertino": "03:00 pm - 11:00 pm",
+                "Nocturno": "11:00 pm - 07:00 am"
+            }
+
+            if turno and turno_horario.get(turno) != horario:
+                messagebox.showerror("HORARIO NO CORRESPONDIDO AL TURNO", f"El turno asignado es '{turno}' y el horario  debe ser '{turno_horario[turno]}'")
+                return
+
             self.horarios_guardados[numero] = horario
             messagebox.showinfo("Horario guardado", f"Horario '{horario}' registrado para el trabajador {numero}")
 
@@ -198,7 +207,7 @@ class Aplicacion:
             faltas_str = faltas_combo.get()
 
             if not numero.isdigit():
-                messagebox.showerror("Error", "Número de trabajador inválido.")
+                messagebox.showerror("Error", "Número de trabajador inválido")
                 return
 
             if numero not in [t["numero_trabajador"] for t in self.datos_trabajadores]:
@@ -236,11 +245,11 @@ class Aplicacion:
             periodo = periodo_combo.get()
 
             if not numero.isdigit():
-                messagebox.showerror("Error", "Número de trabajador inválido.")
+                messagebox.showerror("Error", "Número de trabajador inválido")
                 return
 
             if numero not in [t["numero_trabajador"] for t in self.datos_trabajadores]:
-                messagebox.showerror("No existe", "Este trabajador no está registrado.")
+                messagebox.showerror("No existe", "Este trabajador no está registrado")
                 return
 
             if not periodo:
@@ -294,7 +303,7 @@ def ventana_inicio():
     inicio.geometry("900x800")
     inicio.config(bg="khaki")
 
-    tk.Label(inicio, text="CARGANDO....", font=("Arial", 39),bg="khaki").pack(pady=15)
+    tk.Label(inicio, text="CARGANDO....", font=("Arial", 39), bg="khaki").pack(pady=15)
 
     def abrir_app():
         inicio.destroy()
@@ -303,10 +312,10 @@ def ventana_inicio():
     def salir():
         inicio.destroy()
 
-    btn_entrada = tk.Button(inicio, text="Entrada al sistema",font=12, width=30, command=abrir_app, bg="linen")
+    btn_entrada = tk.Button(inicio, text="Entrada al sistema", font=12, width=30, command=abrir_app, bg="linen")
     btn_entrada.pack(pady=5)
 
-    btn_salida = tk.Button(inicio, text="Salida del sistema",font=12, width=30, command=salir, bg="linen")
+    btn_salida = tk.Button(inicio, text="Salida del sistema", font=12, width=30, command=salir, bg="linen")
     btn_salida.pack(pady=5)
 
     inicio.mainloop()
